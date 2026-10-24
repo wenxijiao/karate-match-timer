@@ -1,0 +1,654 @@
+:root {
+    color-scheme: dark;
+    --bg: #111211;
+    --panel: #1a1c1a;
+    --border: #343831;
+    --muted: #a0a69b;
+    --text: #f5f5ec;
+    --accent: #dcf58b;
+    --warn: #ffb558;
+    --danger: #ff6b55
+}
+* {
+    box-sizing: border-box
+}
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui,-apple-system,Arial,sans-serif
+}
+button,input {
+    font: inherit
+}
+button {
+    cursor: pointer;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+    border-radius: 10px;
+    padding: 12px 16px;
+    transition: background .15s
+}
+button:hover {
+    background: #2a2e26
+}
+button:focus-visible,input:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px
+}
+button:disabled {
+    opacity: .35;
+    cursor: not-allowed
+}
+button.primary {
+    background: var(--accent);
+    color: #192012;
+    border-color: var(--accent);
+    font-weight: 700
+}
+button.primary:hover {
+    background: #edffb5
+}
+button.danger {
+    color: var(--danger)
+}
+.icon {
+    font-size: 20px;
+    line-height: 1;
+    vertical-align: -1px;
+    margin-right: 7px
+}
+header {
+    max-width: 1600px;
+    margin: auto;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+.mark {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border: 1px solid #82914e;
+    border-radius: 50%;
+    font-size: 24px;
+    color: var(--accent)
+}
+h1 {
+    font-size: 19px;
+    letter-spacing: .05em;
+    margin: 0;
+    font-weight: 600
+}
+.subtitle {
+    font-size: 11px;
+    letter-spacing: .22em;
+    color: var(--muted);
+    margin-top: 5px
+}
+.header-actions {
+    display: flex;
+    gap: 10px
+}
+.layout {
+    max-width: 1600px;
+    margin: 10px auto 0;
+    padding: 0 36px 32px;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 304px;
+    gap: 22px
+}
+.arena {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    background: linear-gradient(135deg,#1b1e18,#161815 65%);
+    display: flex;
+    flex-direction: column;
+    min-height: 570px;
+    position: relative
+}
+.arena-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px
+}
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--muted)
+}
+.pill {
+    padding: 7px 12px;
+    border: 1px solid #454d36;
+    border-radius: 30px;
+    font-size: 12px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 7px
+}
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background: currentColor
+}
+.clock-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 0 36px;
+    min-width: 0
+}
+.round-name {
+    font-size: 18px;
+    letter-spacing: .22em;
+    color: var(--muted)
+}
+.time {
+    font-size: clamp(90px,17vw,270px);
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.065em;
+    line-height: 1.18;
+    white-space: nowrap;
+    color: var(--text)
+}
+.state-text {
+    margin-top: 10px;
+    font-size: 17px;
+    letter-spacing: .12em;
+    min-height: 25px;
+    color: var(--muted)
+}
+.progress {
+    height: 4px;
+    background: #33372d;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 28px
+}
+.progress span {
+    display: block;
+    background: var(--accent);
+    height: 100%;
+    width: 100%
+}
+.arena-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--muted);
+    font-size: 12px
+}
+.arena-bottom strong {
+    font-weight: 500;
+    color: #d1d6c9
+}
+.controls {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 136px;
+    gap: 12px
+}
+.controls button {
+    min-height: 60px;
+    font-size: 17px
+}
+.adjustments {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 13px
+}
+.adjustments button {
+    padding: 8px 16px;
+    font-size: 12px
+}
+.hint {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    text-align: center;
+    margin: 17px 0 0
+}
+kbd {
+    border: 1px solid #45493d;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 2px 5px;
+    font: 11px system-ui;
+    color: #d6dacd;
+    margin: 0 3px
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px
+}
+.card h2 {
+    font-size: 14px;
+    letter-spacing: .04em;
+    margin: 0 0 18px
+}
+.field-label {
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    margin: 20px 0 9px
+}
+.field-label:first-of-type {
+    margin-top: 0
+}
+.tabs,.presets {
+    display: flex;
+    gap: 6px
+}
+.tabs button {
+    flex: 1;
+    font-size: 13px;
+    padding: 10px
+}
+.selected {
+    background: #303823 !important;
+    border-color: #7b8d47 !important;
+    color: var(--accent) !important
+}
+.presets button {
+    flex: 1;
+    padding: 10px 7px;
+    font-size: 13px
+}
+.duration-entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px
+}
+.duration-entry input {
+    width: 64px;
+    text-align: center;
+    font-size: 24px;
+    font-variant-numeric: tabular-nums;
+    background: #11140f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 4px;
+    color: var(--text)
+}
+.duration-entry small {
+    font-size: 11px;
+    color: var(--muted)
+}
+.duration-entry button {
+    margin-left: auto;
+    padding: 10px 12px;
+    font-size: 12px
+}
+input.title-input {
+    width: 100%;
+    background: #11140f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 11px;
+    font-size: 13px
+}
+.sound-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px
+}
+.switch {
+    width: 42px;
+    height: 25px;
+    border-radius: 20px;
+    background: #363c30;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0
+}
+.switch:after {
+    content: "";
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    background: #e0e4d8;
+    border-radius: 100%
+}
+.switch[aria-checked="true"] {
+    background: var(--accent);
+    border-color: var(--accent)
+}
+.switch[aria-checked="true"]:after {
+    left: 20px;
+    background: #29301c
+}
+.test-sound {
+    width: 100%;
+    font-size: 12px;
+    padding: 9px;
+    margin-top: 15px
+}
+.note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 14px 0 0
+}
+.screen-card {
+    background: #202719;
+    border-color: #455331
+}
+.screen-card h2 {
+    color: var(--accent);
+    margin-bottom: 10px
+}
+.screen-card ol {
+    font-size: 12px;
+    padding-left: 18px;
+    color: #b8c3aa;
+    line-height: 1.9;
+    margin: 0
+}
+.screen-card button {
+    width: 100%;
+    margin-top: 17px;
+    font-size: 13px;
+    border-color: #586840
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 36px 26px;
+    font-size: 11px;
+    color: #8f9786
+}
+.footer span:last-child {
+    letter-spacing: .12em
+}
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100vw - 32px);
+    background: #e5edd8;
+    color: #1d2316;
+    padding: 13px 22px;
+    border-radius: 10px;
+    box-shadow: 0 8px 40px #0008;
+    z-index: 20;
+    font-size: 14px;
+    line-height: 1.6
+}
+.toast[hidden] {
+    display: none
+}
+dialog {
+    border: 1px solid #4b543e;
+    background: #20241b;
+    color: var(--text);
+    border-radius: 18px;
+    padding: 28px;
+    max-width: 420px;
+    width: calc(100vw - 40px)
+}
+dialog::backdrop {
+    background: #000a
+}
+dialog h2 {
+    font-size: 20px;
+    margin: 0 0 14px
+}
+dialog p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #c1c8b7;
+    margin: 0 0 24px
+}
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px
+}
+.warning .time,.warning .state-text {
+    color: var(--warn)
+}
+.warning .progress span {
+    background: var(--warn)
+}
+.finished .time,.finished .state-text {
+    color: var(--danger)
+}
+.finished .progress span {
+    background: var(--danger)
+}
+.running .pill {
+    border-color: #657c3a
+}
+.paused .pill {
+    color: var(--warn);
+    border-color: #715c3e
+}
+.finished .pill {
+    color: var(--danger);
+    border-color: #854537
+}
+.hidden {
+    display: none !important
+}
+body.presentation {
+    height: 100dvh;
+    overflow: hidden;
+    background: #090a09
+}
+.presentation header,.presentation .sidebar,.presentation .controls,.presentation .adjustments,.presentation .hint,.presentation .footer {
+    display: none
+}
+.presentation .layout {
+    display: block;
+    width: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    max-width: none
+}
+.presentation .arena {
+    border: 0;
+    border-radius: 0;
+    background: #090a09;
+    min-height: 0;
+    height: 100dvh;
+    padding: 5vh 5vw
+}
+.presentation .arena-top .eyebrow {
+    font-size: clamp(16px,2vw,36px);
+    color: #b9c0af;
+    letter-spacing: .1em
+}
+.presentation .pill {
+    font-size: clamp(13px,1.3vw,25px)
+}
+.presentation .clock-area {
+    padding: 0
+}
+.presentation .round-name {
+    font-size: clamp(20px,3vw,50px)
+}
+.presentation .time {
+    font-size: min(32vw,49vh);
+    font-weight: 700;
+    line-height: 1.1
+}
+.presentation .state-text {
+    font-size: clamp(22px,3.2vw,60px);
+    min-height: 1.4em;
+    color: var(--text);
+    margin-top: 1vh
+}
+.presentation .warning .state-text {
+    color: var(--warn)
+}
+.presentation .finished .state-text {
+    color: var(--danger)
+}
+.presentation .progress {
+    margin-top: 3vh;
+    height: 6px
+}
+.presentation .arena-bottom {
+    font-size: clamp(12px,1.25vw,20px)
+}
+.display-toolbar {
+    position: fixed;
+    right: 20px;
+    bottom: 16px;
+    display: none;
+    gap: 8px;
+    z-index: 5;
+    opacity: .25;
+    transition: opacity .15s
+}
+.display-toolbar:hover,.display-toolbar:focus-within {
+    opacity: 1
+}
+.presentation .display-toolbar {
+    display: flex
+}
+.display-toolbar button {
+    font-size: 12px;
+    background: #161a12
+}
+.display-notice {
+    color: var(--danger)
+}
+@media (max-width:1000px) {
+    header {
+        padding: 22px
+    }
+    .layout {
+        padding: 0 22px 25px;
+        grid-template-columns: minmax(0,1fr) 270px;
+        gap: 16px
+    }
+    .arena {
+        padding: 22px;
+        min-height: 510px
+    }
+    .card {
+        padding: 18px
+    }
+    .time {
+        font-size: 16vw
+    }
+    .footer {
+        padding: 0 22px 24px
+    }
+    .header-actions button {
+        font-size: 12px;
+        padding: 11px
+    }
+}
+@media (max-width:760px) {
+    header {
+        align-items: flex-start;
+        padding: 20px 16px
+    }
+    .brand {
+        gap: 10px
+    }
+    h1 {
+        font-size: 16px
+    }
+    .mark {
+        width: 36px;
+        height: 36px;
+        font-size: 20px
+    }
+    .subtitle {
+        font-size: 9px
+    }
+    .header-actions {
+        flex-direction: column
+    }
+    .header-actions button {
+        padding: 8px 10px
+    }
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 0 16px 24px;
+        margin: 0
+    }
+    .arena {
+        min-height: 385px;
+        padding: 18px
+    }
+    .time {
+        font-size: 25vw
+    }
+    .clock-area {
+        padding: 22px 0
+    }
+    .sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr
+    }
+    .sidebar .card:first-child {
+        grid-column: 1/-1
+    }
+    .screen-card {
+        grid-column: 1/-1
+    }
+    .footer {
+        padding: 0 16px 20px
+    }
+    .footer span:last-child {
+        display: none
+    }
+    .hint {
+        font-size: 11px
+    }
+    .presentation .arena-top {
+        gap: 8px
+    }
+    .presentation .pill {
+        font-size: 11px
+    }
+    .presentation .arena-bottom {
+        font-size: 11px
+    }
+    .presentation .time {
+        font-size: min(31vw,45vh)
+    }
+}

@@ -1,0 +1,22 @@
+# Local files and build output
+.DS_Store
+*.log
+node_modules/
+dist/
+.cache/
+.build/
+.build-*/
+.swiftpm/
+.env
+.env.*
+!.env.example
+*.app/
+*.exe
+*.zip
+*.tar.gz
+# Event data and personal audio stay on the operator's computer
+match.json
+prefs.json
+*.mp3
+*.m4a
+*.flac

@@ -1,0 +1,28 @@
+name: Check timer applications
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Test desktop timing, scoring and window control
+        run: node --test windows/test/*.test.js
+      - name: Validate browser JavaScript
+        run: node --check web/app.js
+  swift:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build and test the native application
+        working-directory: macos
+        run: swift test

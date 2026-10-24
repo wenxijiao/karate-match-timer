@@ -1,0 +1,49 @@
+{
+  "name": "karate-match-timer",
+  "productName": "Karate Match Timer",
+  "version": "1.0.0",
+  "description": "Karate kumite timer with separate timer and AKA / SHIRO score screens.",
+  "author": "Karate Match Timer",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test \"test/**/*.test.js\"",
+    "dist:win": "electron-builder --win portable --x64"
+  },
+  "build": {
+    "appId": "nz.karate.matchtimer",
+    "productName": "Karate Match Timer",
+    "copyright": "Local competition timer, 2026.",
+    "toolsets": {
+      "nsis": "1.2.1"
+    },
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "Karate Match Timer ${version}.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3"
+  }
+}

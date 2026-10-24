@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self' blob:">
+<title>Karate Match Timer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="control-body">
+<div class="control-layout">
+  <section class="preview" id="preview">
+    <div class="preview-slot" id="timerPreview"></div>
+    <div class="preview-slot" id="scorePreview"></div>
+  </section>
+
+  <aside class="panel">
+    <h1>Controls</h1>
+
+    <section class="group">
+      <h2>Displays</h2>
+      <label class="field">
+        <span>Timer screen</span>
+        <select id="timerScreen"></select>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="showScore">
+        <span class="switch-track"></span>
+        <span>Show score screen</span>
+      </label>
+      <label class="field" id="scoreScreenField">
+        <span>Score screen</span>
+        <select id="scoreScreen"></select>
+      </label>
+      <button class="btn primary wide" id="openDisplays"></button>
+      <button class="btn wide" id="closeDisplays">✕ Close displays</button>
+
+      <h2>Title</h2>
+      <div class="row" id="titleView">
+        <div class="readonly" id="titleText"></div>
+        <button class="btn" id="editTitle">Edit</button>
+      </div>
+      <div class="row" id="titleEdit" hidden>
+        <input type="text" id="titleInput" maxlength="80" placeholder="KARATE">
+        <button class="btn primary" id="doneTitle">Done</button>
+      </div>
+    </section>
+
+    <section class="group" id="scoreSection">
+      <div class="group-head">
+        <h2>Score</h2>
+        <button class="btn" id="editNames">Edit names</button>
+        <button class="btn primary" id="doneNames" hidden>Done</button>
+      </div>
+      <div id="nameEditor" hidden>
+        <label class="name-row"><span class="tag aka">AKA</span><input type="text" id="akaInput" maxlength="40" placeholder="AKA"></label>
+        <label class="name-row"><span class="tag shiro">SHIRO</span><input type="text" id="aoInput" maxlength="40" placeholder="SHIRO"></label>
+        <p class="hint">Enter or Done when finished — then Space controls the timer again.</p>
+      </div>
+      <div class="score-row aka" data-side="aka">
+        <div class="score-line"><span class="score-name" id="akaLabel"></span><span class="score-value" id="akaValue"></span></div>
+        <div class="score-buttons">
+          <button class="btn tint" data-points="1">+1</button>
+          <button class="btn tint" data-points="2">+2</button>
+          <button class="btn tint" data-points="3">+3</button>
+          <button class="btn tint" data-minus>−1</button>
+        </div>
+      </div>
+      <div class="score-row shiro" data-side="shiro">
+        <div class="score-line"><span class="score-name" id="aoLabel"></span><span class="score-value" id="aoValue"></span></div>
+        <div class="score-buttons">
+          <button class="btn tint" data-points="1">+1</button>
+          <button class="btn tint" data-points="2">+2</button>
+          <button class="btn tint" data-points="3">+3</button>
+          <button class="btn tint" data-minus>−1</button>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn" id="resetScores">Reset scores</button>
+        <button class="btn" id="newBout">New bout</button>
+      </div>
+      <p class="hint">WKF points: +1 Yuko · +2 Waza-ari · +3 Ippon</p>
+    </section>
+
+    <section class="group">
+      <div class="group-head">
+        <h2>Regular time</h2>
+        <span class="badge" id="extraBadge" hidden>EXTRA TIME</span>
+      </div>
+      <div class="row">
+        <button class="btn grow" data-duration="120">2 min</button>
+        <button class="btn grow" data-duration="180">3 min</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <button class="btn primary wide big" id="toggle"></button>
+      <div class="row">
+        <button class="btn grow" id="reset">↺ Reset timer</button>
+        <button class="btn" id="minus10">−10s</button>
+        <button class="btn" id="plus10">+10s</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>During countdown</h2>
+      <div class="row">
+        <button class="btn grow" id="withMusic">♪ With music</button>
+        <button class="btn grow" id="countdownOnly">Countdown only</button>
+      </div>
+      <div class="group" id="musicPicker">
+        <div class="row">
+          <div class="readonly" id="musicName"></div>
+          <button class="btn" id="chooseMusic">Choose file…</button>
+        </div>
+        <button class="link" id="clearMusic">Clear selection</button>
+        <p class="hint">Plays while the clock runs, fades out on pause, and starts over on reset.</p>
+      </div>
+    </section>
+
+    <section class="group">
+      <label class="switch">
+        <input type="checkbox" id="sound">
+        <span class="switch-track"></span>
+        <span>Sound at time up</span>
+      </label>
+      <button class="btn wide" id="testSound">♪ Test bell</button>
+      <button class="link" id="extraTime"></button>
+      <button class="link" id="regularTime"></button>
+    </section>
+
+    <div class="message" id="message" hidden>
+      <span>ⓘ</span>
+      <span class="message-text" id="messageText"></span>
+      <button class="link" id="dismissMessage" aria-label="Dismiss">✕</button>
+    </div>
+
+    <p class="hint" id="help"></p>
+  </aside>
+</div>
+
+<div class="modal-backdrop" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDetail"></p>
+    <div class="modal-actions">
+      <button class="btn" id="modalCancel">Cancel</button>
+      <button class="btn primary" id="modalConfirm"></button>
+    </div>
+  </div>
+</div>
+
+<audio id="bell" src="finish-bell.wav" preload="auto"></audio>
+<audio id="music" loop preload="auto"></audio>
+<script src="shared.js"></script>
+<script src="control.js"></script>
+</body>
+</html>

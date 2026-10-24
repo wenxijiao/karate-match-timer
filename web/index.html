@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111211">
+    <meta name="description" content="Offline karate timer with separate controls, an audience display, adjustable rounds and a finish bell.">
+    <title>Karate Match Timer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true">K</div>
+        <div>
+          <h1>Karate Match Timer</h1>
+          <div class="subtitle">OFFLINE EVENT TOOLS</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="fullscreen">
+          <span class="icon" aria-hidden="true">⛶</span>
+          Full screen
+        </button>
+        <button id="openDisplay" class="primary">
+          <span class="icon" aria-hidden="true">↗</span>
+          Open audience display
+        </button>
+      </div>
+    </header>
+    <main class="layout">
+      <section class="main-column" aria-label="Match timer">
+        <div class="arena" id="arena">
+          <div class="arena-top">
+            <span class="eyebrow" id="eventLabel">KARATE EXHIBITION</span>
+            <span class="pill">
+              <span class="dot"></span>
+              <span id="statusBadge">Ready</span>
+            </span>
+          </div>
+          <div class="clock-area">
+            <div class="round-name" id="roundName">Regular time</div>
+            <div class="time" id="time" role="timer" aria-label="Time remaining">02:00</div>
+            <div class="state-text" id="stateText" role="status">Waiting to start</div>
+            <div class="progress">
+              <span id="progressFill"></span>
+            </div>
+          </div>
+          <div class="arena-bottom">
+            <span id="durationLabel">Round duration <strong>02:00</strong></span>
+            <span id="connectionLabel">Audience display not connected</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="toggle" class="primary">
+            <span aria-hidden="true">▶</span>
+            Start timer
+          </button>
+          <button id="reset">↺ Reset</button>
+        </div>
+        <div class="adjustments">
+          <button id="minus">−10s</button>
+          <button id="plus">＋10s</button>
+        </div>
+        <p class="hint">
+          <kbd>
+            Space
+          </kbd>
+          Start / Pause
+          <span aria-hidden="true">&nbsp;·&nbsp;</span>
+          <kbd>
+            R
+          </kbd>
+          Reset
+          <span aria-hidden="true">&nbsp;·&nbsp;</span>
+          <kbd>
+            F
+          </kbd>
+          Full screen
+        </p>
+      </section>
+      <aside class="sidebar" aria-label="Timer settings">
+        <section class="card">
+          <h2>Match settings</h2>
+          <label class="field-label">Match stage</label>
+          <div class="tabs">
+            <button id="regular" class="selected" aria-pressed="true">Regular time</button>
+            <button id="overtime" aria-pressed="false">Extra time</button>
+          </div>
+          <label class="field-label">Duration presets</label>
+          <div class="presets">
+            <button data-duration="60">1 min</button>
+            <button data-duration="120" class="selected">2 min</button>
+            <button data-duration="180">3 min</button>
+          </div>
+          <div class="duration-entry">
+            <input type="number" id="minutes" min="0" max="99" value="2" aria-label="Duration in minutes">
+            <small>min</small>
+            <input type="number" id="seconds" min="0" max="59" value="0" aria-label="Duration in seconds">
+            <small>sec</small>
+            <button id="applyDuration">Apply</button>
+          </div>
+          <label class="field-label" for="eventTitle">Display title</label>
+          <input class="title-input" id="eventTitle" value="KARATE EXHIBITION" maxlength="35">
+          <p class="note">Regular and extra time keep separate durations. Pause before changing settings.</p>
+        </section>
+        <section class="card">
+          <h2>Finish alert</h2>
+          <div class="sound-row">
+            <label for="soundToggle">Sound at time up</label>
+            <button class="switch" id="soundToggle" role="switch" aria-checked="true" aria-label="Sound at time up"></button>
+          </div>
+          <button class="test-sound" id="testSound">♫ Test bell</button>
+          <p class="note">The last 10 seconds turn amber; time up turns red. The bell plays on the control computer.</p>
+        </section>
+        <section class="card screen-card">
+          <h2>Set up an audience display</h2>
+          <ol>
+            <li>Choose extended displays in your system settings.</li>
+            <li>Open the audience display and move it to the external screen.</li>
+            <li>Select Full screen there; keep the controls on your computer.</li>
+          </ol>
+          <button id="openDisplay2">↗ Open audience display</button>
+        </section>
+      </aside>
+    </main>
+    <footer class="footer">
+      <span id="wakeStatus">Ready - connect power and disable automatic sleep</span>
+      <span>Every second counts</span>
+    </footer>
+    <div class="display-toolbar">
+      <button id="displayFullscreen">⛶ Full screen</button>
+      <button id="exitPresentation">Back to controls</button>
+    </div>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <dialog id="confirmDialog">
+      <h2 id="confirmTitle">Reset timer?</h2>
+      <p id="confirmBody">The current time will be cleared.</p>
+      <div class="dialog-actions">
+        <button id="cancelConfirm">Cancel</button>
+        <button class="primary" id="acceptConfirm">Reset timer</button>
+      </div>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
